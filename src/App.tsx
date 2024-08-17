@@ -1,6 +1,6 @@
 import './App.css'
 import './components/Shop/static_files/css/style.css'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { HashRouter as Router } from 'react-router-dom'  //BrowserRouter
 import { Shop } from './components/Shop/Shop/Shop';
 // import 'bootstrap/dist/css/bootstrap.min.css'
 

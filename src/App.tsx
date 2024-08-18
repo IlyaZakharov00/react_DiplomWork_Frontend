@@ -6,7 +6,7 @@ import { Shop } from './components/Shop/Shop/Shop';
 
 function App() {
   return (
-    <Router basename='/react_DiplomWork_Frontend/' >
+    <Router basename='https://ilyazakharov00.github.io/react_DiplomWork_Frontend/' >
       <Shop />
     </Router >
   )

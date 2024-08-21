@@ -2,7 +2,7 @@ export type TCartItem = {
     countProducts: number;
     price: number;
     selectedSize: string;
-    title: string
+    title: string;
 }
 
 export type TCartProps = {
@@ -10,7 +10,8 @@ export type TCartProps = {
         countProducts: number;
         price: number;
         selectedSize: string;
-        title: string
+        title: string;
+        id?: number;
     },
 
     indexProduct: number,

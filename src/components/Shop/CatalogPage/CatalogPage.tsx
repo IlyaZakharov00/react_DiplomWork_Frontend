@@ -15,7 +15,7 @@ export const CatalogPage = () => {
         navigate('/react_DiplomWork_Frontend/catalog/categorieID/all');
         dispatch(fetchCatalogCategories());
         dispatch(fetchCatalogItems());
-    }, [])
+    }, []);
 
     return (
         <main className="container">

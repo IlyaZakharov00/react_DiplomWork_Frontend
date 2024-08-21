@@ -28,7 +28,7 @@ export const Catalog = () => {
 
     useEffect(() => {
         navigate('/react_DiplomWork_Frontend/mainPage/categorieID/all');
-    }, [])
+    }, []);
 
     return (
         <section className="catalog">

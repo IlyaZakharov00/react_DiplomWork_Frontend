@@ -20,7 +20,7 @@ export const MainPage = () => {
         dispatch(fetchCatalogCategories());
         dispatch(fetchCatalogItems('all'));
         dispatch(getCatalogSlice.actions.searchInCatalog(''));
-    }, [])
+    }, []);
 
     return (
         <>

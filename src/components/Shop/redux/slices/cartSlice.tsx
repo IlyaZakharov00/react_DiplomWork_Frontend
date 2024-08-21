@@ -1,4 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
+import { fetchMakePurchase } from "../async action/postMakePurchase";
+import { act } from "react";
+import { useSelector } from "react-redux";
 
 // type TProductItem = {
 //     countProducts: number;
@@ -9,10 +12,16 @@ import { createSlice, current } from "@reduxjs/toolkit";
 
 type TInitialState = {
     products: Array<any>;
+    loading: boolean;
+    error: boolean | null;
+    fulfilled: boolean;
 };
 
 const initialState: TInitialState = {
-    products: []
+    products: [],
+    loading: false,
+    error: null,
+    fulfilled: false,
 }
 
 const cartSlice = createSlice({
@@ -20,20 +29,24 @@ const cartSlice = createSlice({
     initialState: initialState,
     reducers: {
         addProduct: (state, action) => {
-            console.log(action.payload)
-            if (current(state.products).length === 0) {
+
+            if (state.products.length === 0) {
                 state.products.push(action.payload);
-            } else {
-                for (const product of current(state.products)) {
-                    if (product.title === action.payload.title && product.size === action.payload.size) {
-                        let index = state.products.indexOf(product);
-                        action.payload.countProducts = product.countProducts + action.payload.countProducts;
-                        state.products.splice(index, 1, action.payload);
-                    } else {
-                        state.products.push(action.payload);
-                    }
+                localStorage.setItem('products', JSON.stringify(state.products));
+                return;
+            }
+
+            for (let i = 0; i < state.products.length; i++) {
+                if (current(state.products[i]).id === action.payload.id) {
+                    let index = state.products.indexOf(state.products[i])
+                    action.payload.countProducts = current(state.products[i]).countProducts + action.payload.countProducts;
+                    state.products.splice(index, 1, action.payload);
+                    localStorage.setItem('products', JSON.stringify(state.products));
+                    return;
                 }
             }
+
+            state.products.push(action.payload);
             localStorage.setItem('products', JSON.stringify(state.products));
         },
 
@@ -47,8 +60,28 @@ const cartSlice = createSlice({
             if (productsJSON) state.products = JSON.parse(productsJSON);
         },
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchMakePurchase.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+
+            .addCase(fetchMakePurchase.fulfilled, (state) => {
+                state.loading = false;
+                state.fulfilled = true;
+                localStorage.clear();
+                state.products = [];
+            })
+
+            .addCase(fetchMakePurchase.rejected, (state) => {
+                state.loading = false;
+                state.error = true;
+            })
+    }
 });
 
 export default cartSlice
 export const { addProduct, deleteProduct, backFromLC } = cartSlice.actions
+
 

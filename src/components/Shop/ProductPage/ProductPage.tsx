@@ -17,11 +17,11 @@ export const ProductPage = () => {
     useEffect(() => {
         const path = document.location.pathname.split('/');
         dispatch(fetchAboutItem(path[path.length - 1]));
-    }, [])
+    }, []);
 
     const aboutItem = useSelector((state: any) => state.aboutItem);
     const { infoAboutItemByID, loadingAbouTItem, errorAboutItem } = aboutItem;
-    const { color, images, manufacturer, material, reason, season, sizes, sku, title, price } = infoAboutItemByID;
+    const { color, images, manufacturer, material, reason, season, sizes, sku, title, price, id } = infoAboutItemByID;
     let availableSizes = [];
 
     const hendlerSizeClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -51,6 +51,7 @@ export const ProductPage = () => {
 
     const btnPurchaseClick = () => {
         const infoAboutProduct = {
+            id,
             title,
             selectedSize,
             countProducts,

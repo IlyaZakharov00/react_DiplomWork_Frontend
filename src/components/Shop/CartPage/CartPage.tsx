@@ -3,11 +3,15 @@ import { Banner } from '../Banner/Banner';
 import { MakeOrder } from '../MakeOrder/MakeOrder';
 import { CartItem } from '../CartItem/CartItem';
 import { TCartItem } from '../types/CartItem';
+import { Loading } from '../Loading/Loading';
+import { ServerError } from '../ServerError/ServerError';
+import { ThanksForOrder } from '../ThanksForOrder/ThanksForOrder';
 
 export const CartPage = () => {
     const cart = useSelector((state: any) => state.cart);
     let sum;
-    let { products } = cart;
+    const { products } = cart;
+    const { loading, error, fulfilled } = cart;
     let prices: number[] = [];
 
     if (products.length !== 0) {
@@ -15,7 +19,7 @@ export const CartPage = () => {
             prices.push(Number(item.price) * Number(item.countProducts));
         });
         sum = prices.reduce((firstItem, secondItem) => firstItem + secondItem);
-    }
+    };
 
     return (
         <main className="container" >
@@ -48,7 +52,9 @@ export const CartPage = () => {
                             </table>
                         }
                     </section>
-                    <MakeOrder />
+                    {loading ? <Loading /> :
+                        error ? <ServerError /> :
+                            fulfilled ? <ThanksForOrder /> : <MakeOrder />}
                 </div>
             </div >
         </main>

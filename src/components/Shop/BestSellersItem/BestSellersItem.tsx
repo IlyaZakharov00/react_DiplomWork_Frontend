@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { TBestSellersProps } from "../types/BestSellersItem";
 
 export const BestSellersItem = (props: TBestSellersProps) => {
-    const { id, category, title, price, images } = props.item
+    const { id, category, title, price, images } = props.item;
+
     return (
         <div className="col-4" data-category={category} id={String(id)}>
             <div className="card">

@@ -4,7 +4,7 @@ export type TBestSellersProps = {
         category: number;
         title: string;
         price: number;
-        images: string[]
+        images: string[];
     }
 }
 
@@ -13,5 +13,5 @@ export type TBestSellersItem = {
         category: number;
         title: string;
         price: number;
-        images: string[]
+        images: string[];
     }

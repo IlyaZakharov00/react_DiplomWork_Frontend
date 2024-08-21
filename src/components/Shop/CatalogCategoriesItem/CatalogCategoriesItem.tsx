@@ -10,11 +10,11 @@ export const CatalogCategoriesItem = (props: TCatalogCategoriesProps) => {
 
     const loadItemsByCategorie = (id?: string | undefined | null) => {
         dispatch(fetchCatalogItems(id));
-    }
+    };
 
     return (
         <li className="nav-item">
-            <NavLink className="nav-link" to={`categorieID/${id.toString()}`} id={String(id)} onClick={(() => loadItemsByCategorie(String(id)))}>{title} </NavLink>
+            <NavLink className="nav-link" to={`categorieID/${id.toString()}`} id={String(id)} onClick={(() => loadItemsByCategorie(String(id)))}>{title}</NavLink>
         </li >
     )
 }

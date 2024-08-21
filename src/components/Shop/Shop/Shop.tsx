@@ -28,10 +28,13 @@ export const Shop = () => {
 
                 <Route path='/react_DiplomWork_Frontend/mainPage/productID/:id' element={<ProductPage />} />
                 <Route path='/react_DiplomWork_Frontend/catalog/productID/:id' element={<ProductPage />} />
+                <Route path='/react_DiplomWork_Frontend/cartPage/productID/:id' element={<ProductPage />} />
 
                 <Route path='/react_DiplomWork_Frontend/about' element={<AboutPage />} />
                 <Route path='/react_DiplomWork_Frontend/contacts' element={<ContactsPage />} />
+
                 <Route path='/react_DiplomWork_Frontend/cartPage' element={<CartPage />} />
+
                 <Route path='*' element={<ErrorPage />} />
             </Route>
         </Routes >

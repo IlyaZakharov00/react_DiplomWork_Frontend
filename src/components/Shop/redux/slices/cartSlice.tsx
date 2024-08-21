@@ -1,14 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { fetchMakePurchase } from "../async action/postMakePurchase";
-import { act } from "react";
-import { useSelector } from "react-redux";
-
-// type TProductItem = {
-//     countProducts: number;
-//     price: number;
-//     selectedSize: string;
-//     title: string;
-// }
 
 type TInitialState = {
     products: Array<any>;
